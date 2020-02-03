@@ -1,0 +1,26 @@
+{
+  "name": "api-rest",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "npm run generate-dotenv && node -r dotenv/config ./bin/www",
+    "nodemon" : "npm run generate-dotenv && nodemon -r dotenv/config ./bin/www",
+    "test": "mocha",
+    "generate-dotenv": "cp .env.default .env" 
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "~4.16.0",
+    "global": "^4.4.0",
+    "http-errors": "~1.6.2",
+    "jade": "~1.11.0",
+    "mocha": "^7.0.1",
+    "morgan": "~1.9.0",
+    "mysql2": "^2.1.0",
+    "nodemon": "^2.0.2",
+    "sequelize": "^5.21.3"
+  }
+}
