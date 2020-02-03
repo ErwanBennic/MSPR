@@ -46,6 +46,8 @@ CREATE TABLE `promo` (
   `id` int(11) NOT NULL,
   `code` varchar(50) NOT NULL,
   `libelle` varchar(100) NOT NULL,
+  `pourcentage` float NOT NULL,
+  `marque` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
   `dateperemption` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -53,9 +55,9 @@ CREATE TABLE `promo` (
 -- Déchargement des données de la table `promo`
 --
 
-INSERT INTO `promo` (`id`, `code`, `libelle`, `dateperemption`) VALUES
-(1, 'PRINTEMPS20', 'Le printemps, c\'est maintenant !', '2020-03-31'),
-(2, 'GRENOUILLE20', 'Certains matins de printemps ont une fraîcheur de grenouille.', '2020-04-30');
+INSERT INTO `promo` (`id`, `code`, `libelle`, `pourcentage`, `marque`, `dateperemption`) VALUES
+(1, 'PRINTEMPS20', 'Le printemps, c\'est maintenant !', 15, 'Nike', '2020-03-31'),
+(2, 'GRENOUILLE20', 'Certains matins de printemps ont une fraîcheur de grenouille.', 25, 'Roxy', '2020-04-30');
 
 -- --------------------------------------------------------
 
