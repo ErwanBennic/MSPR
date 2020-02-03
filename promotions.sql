@@ -1,4 +1,5 @@
 CREATE DATABASE IF NOT EXISTS promotions;
+USE promotions;
 DROP TABLE IF EXISTS promo;
 DROP TABLE IF EXISTS client;
 
