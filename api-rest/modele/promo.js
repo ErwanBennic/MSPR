@@ -1,6 +1,8 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../initdb');
+
 const Model = Sequelize.Model;
+
 class Promo extends Model { }
 Promo.init({
    code: {
