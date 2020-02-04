@@ -10,16 +10,9 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
-import android.app.Activity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.google.zxing.Result;
-
-import me.dm7.barcodescanner.zxing.ZXingScannerView;
-
-import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 

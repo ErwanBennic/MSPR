@@ -3,6 +3,7 @@ package fr.epsi.gostyle;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
@@ -48,5 +49,9 @@ public class SimpleScannerActivity extends BaseScannerActivity implements ZXingS
                 mScannerView.resumeCameraPreview(SimpleScannerActivity.this);
             }
         }, 5000);
+
+        setContentView(R.layout.activity_main);
+        TextView textView = (TextView) findViewById(R.id.code1);
+        textView.setText(rawResult.getText());
     }
 }

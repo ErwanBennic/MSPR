@@ -2,9 +2,8 @@ package fr.epsi.gostyle;
 
 import android.view.MenuItem;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+
 
 public class BaseScannerActivity extends AppCompatActivity {
 
