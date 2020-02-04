@@ -26,8 +26,8 @@ Client.init({
    sequelize,
    modelName: 'client'
 });
-Client.belongsToMany(Promo, {through : 'promoclient', as: 'promos', foreignKey: 'id_promo'});
-Promo.belongsToMany(Client, {through : 'promoclient', as : 'clients', foreignKey: 'id_client'});
 
+Client.belongsToMany(Promo, {through : 'promoclient', as: 'promos', foreignKey: 'id_promo', onUpdate : 'cascade'});
+Promo.belongsToMany(Client, {through : 'promoclient', as : 'clients', foreignKey: 'id_client', onUpdate : 'cascade'});
 
 module.exports = Client;

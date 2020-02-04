@@ -1,7 +1,6 @@
 const Promos = require('../modele/promo');
 
 const logger = require('../helper/logger');
-const Client = require('../modele/client');
 
 
 module.exports = class ClientDao {
@@ -14,5 +13,16 @@ module.exports = class ClientDao {
          logger.red('PromoDao.getAllPromos', error)
       }
    }
+   
+   async getPromoById(promoId) {
+      try {
+         const promo = await Promos.findByPk(promoId);
+         const res = JSON.stringify(promo, null, 4);
+         return res
+      } catch (error) {
+         logger.red('PromoDao.getPromoById', error);
+      }
+   }
+
    
 }

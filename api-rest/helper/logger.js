@@ -17,7 +17,7 @@ const fullTime = `${h}:${m}:${s}`;
 
 const logger = {
    blue(source, m){console.log(colors.blue, `${fullTime} [${source}] - ${m}`)},
-   red(source, m, f){console.log(colors.red, `${fullTime} [${source}] - ${m} in ${f}`)},
+   red(source, m){console.log(colors.red, `${fullTime} [${source}] - ${m}`)},
    green(source, m){console.log(colors.green, `${fullTime} [${source}] - ${m}`)},
    yellow(source, m){console.log(colors.yellow, `${fullTime} [${source}] - ${m}`)},
    magenta(source, m){console.log(colors.magenta, `${fullTime} [${source}] - ${m}`)},

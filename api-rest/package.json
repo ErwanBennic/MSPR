@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "start": "npm run generate-dotenv && node -r dotenv/config ./bin/www",
-    "nodemon" : "npm run generate-dotenv && nodemon -r dotenv/config ./bin/www",
+    "nodemon": "npm run generate-dotenv && nodemon -r dotenv/config ./bin/www",
     "test": "mocha",
-    "generate-dotenv": "cp .env.default .env" 
+    "generate-dotenv": "cp .env.default .env"
   },
   "dependencies": {
     "chai": "^4.2.0",
