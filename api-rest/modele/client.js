@@ -27,7 +27,7 @@ Client.init({
    modelName: 'client'
 });
 
-Client.belongsToMany(Promo, {through : 'promoclient', as: 'promos', foreignKey: 'id_promo', onUpdate : 'cascade'});
-Promo.belongsToMany(Client, {through : 'promoclient', as : 'clients', foreignKey: 'id_client', onUpdate : 'cascade'});
+Client.belongsToMany(Promo, {through : 'promoclient', as: 'promos', foreignKey: 'id_client', onUpdate : 'cascade'});
+Promo.belongsToMany(Client, {through : 'promoclient', as : 'clients', foreignKey: 'id_promo', onUpdate : 'cascade'});
 
 module.exports = Client;

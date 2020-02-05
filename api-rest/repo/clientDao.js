@@ -27,10 +27,7 @@ module.exports = class ClientDao {
 
    async savePromoForClient(promoId, userId) {
       try {
-         let romanoff = await Client.findByPk(userId, { include: [{ model: Promo, as: 'promos' }] });
          await Promoclient.create({id_promo : promoId, id_client : userId});
-         logger.cyan("clientDao.savePromoClient", JSON.stringify(romanoff, null, 4));
-           
       } catch (error) {
          logger.red('clientDao.savePromoForClient', error);
       }
