@@ -7,7 +7,8 @@ const sequelize = new Sequelize(config.DB_NAME, config.DB_USER, config.DB_PWD, {
    define: {
       timestamps: false,
       freezeTableName: true
-   }
+   },
+   logging:false
 });
 
 sequelize
