@@ -12,9 +12,7 @@ import android.os.Bundle;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.zxing.Result;
@@ -50,9 +48,9 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         TextView tv = new TextView(getApplicationContext());
 
         // Create a LayoutParams for TextView
-        ViewGroup.LayoutParams lp = new RelativeLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, // Width of TextView
-                ViewGroup.LayoutParams.WRAP_CONTENT); // Height of TextView
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, // Width of TextView
+                LinearLayout.LayoutParams.WRAP_CONTENT); // Height of TextView
 
         // Apply the layout parameters to TextView widget
         tv.setLayoutParams(lp);
@@ -62,8 +60,10 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         // Set a text color for TextView text
         tv.setTextColor(Color.parseColor("#000000"));
 
+        lL.setPadding(100, 10, 10, 10);
         // Add newly created TextView to parent view group (RelativeLayout)
         lL.addView(tv);
+
     }
 
     public void launchSimpleActivity(View v) {

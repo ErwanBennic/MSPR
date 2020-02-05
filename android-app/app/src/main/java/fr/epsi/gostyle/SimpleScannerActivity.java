@@ -1,14 +1,9 @@
 package fr.epsi.gostyle;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -16,12 +11,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.zxing.Result;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -67,7 +60,6 @@ public class SimpleScannerActivity extends BaseScannerActivity implements ZXingS
 
         final Intent myIntent = new Intent(this, MainActivity.class);
 
-        final TextView textView = (TextView) findViewById(R.id.code1);
         String url = rawResult.getText();
         System.out.println(url);
 
@@ -82,8 +74,7 @@ public class SimpleScannerActivity extends BaseScannerActivity implements ZXingS
                         try {
                             // Contains the json data
                             JSONObject jsonObject = new JSONObject(response);
-                            /*textView.setText("It Worked !");*/
-                            myIntent.putExtra("JSON_NOM", "Nom :" + jsonObject.getString("name"));
+                            myIntent.putExtra("JSON_NOM", "Nom : " + jsonObject.getString("name"));
                             startActivity(myIntent);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -92,8 +83,6 @@ public class SimpleScannerActivity extends BaseScannerActivity implements ZXingS
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                setContentView(R.layout.activity_main);
-                textView.setText("That didn't work!");
                 VolleyLog.e("Error: " + error.toString());
             }
         });
