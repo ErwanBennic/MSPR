@@ -9,18 +9,23 @@ var router = express.Router();
 
 router.get('/', async function (req, res, next) {
    const promos = await promoDao.getAllPromos();
-   res.send(promos);
+   res.status(200).send(JSON.parse(promos));
 });
 
 router.get('/:promoId/', async (req, res, next) => {
    const promo = await promoDao.getPromoById(req.params.promoId);
-   res.send(promo);
+   const payload = JSON.parse(promo);
+   if(payload) {
+      res.status(200).json(payload);
+   } else {
+      res.status(404).send({"error" : "No promo found"});
+   }
 });
 
-router.post('/:promoId/:userId', async (req, res, next) => {
+router.get('/:promoId/:userId', async (req, res, next) => {
    const promo = await promoDao.getPromoById(req.params.promoId);
    await clientDao.savePromoForClient(req.params.promoId, req.params.userId);
-   res.send(promo);
+   res.status(201).json(JSON.parse(promo));
 });
 
 module.exports = router;
