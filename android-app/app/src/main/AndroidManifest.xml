@@ -22,6 +22,9 @@
         <activity android:name=".SimpleScannerActivity"
             android:label="simple_scanner_activity">
         </activity>
-    </application>
+
+        <activity android:name=".MainActivity"
+            android:label="main_activity">
+        </activity>    </application>
 
 </manifest>
