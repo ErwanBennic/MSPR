@@ -24,7 +24,6 @@ public class Login_activity extends Activity {
         });
     }
 
-
     public void login(View v) {
         EditText username = (EditText) findViewById(R.id.login);
         EditText password = (EditText) findViewById(R.id.password);
