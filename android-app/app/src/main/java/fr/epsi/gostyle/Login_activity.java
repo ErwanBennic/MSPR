@@ -34,7 +34,7 @@ public class Login_activity extends Activity {
 
         } else {
 
-            username.setText("lol");
+
         }
     }
 }
