@@ -21,8 +21,13 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     private static final int ZXING_CAMERA_PERMISSION = 1;
     private Class<?> mClss;
 
+    public static void display(MainActivity activity) {
+        Intent intent = new Intent(activity,MainActivity.class);
+        activity.startActivity(intent);
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
