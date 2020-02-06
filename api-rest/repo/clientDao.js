@@ -5,21 +5,10 @@ const Promoclient = require('../modele/promoclient');
 
 
 module.exports = class ClientDao {
-   async getAllClients() {
-      try {
-         const client = await Client.findAll();
-         const res = JSON.stringify(client, null, 4);
-         return res;
-      } catch (error) {
-         logger.red('ClientDao.getAllClients', error)
-      }
-   }
 
    async getClientById(clientID) {
       try {
-         const client = await Client.findByPk(clientID, {include : [{ model: Promo, as: 'promos' }]});
-         const res = JSON.stringify(client, null, 4);
-         return res;
+         return await Client.findByPk(clientID, {include : [{ model: Promo, as: 'promos' }]});
       } catch (error) {
          logger.red('ClientDao.getClientById', error)
       }

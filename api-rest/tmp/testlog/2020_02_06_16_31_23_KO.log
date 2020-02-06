@@ -1,0 +1,28 @@
+
+> api-rest@0.0.0 test C:\Users\Seb\Workspace\MSPR\api-rest
+> mocha 'test/**/*.js' --recursive --full-trace --color --timeout 60000 --exit
+
+
+[0m[0m
+[0m  checks routes for client[0m
+[34m ⚡  Connection has been established successfully. ⚡
+[0mGET /clients/1 [32m200 [0m49.074 ms - 204[0m
+  [31m  1) should send a response with code 200 and the right client in payload if he exists in db[0m
+
+
+[92m [0m[32m 0 passing[0m[90m (235ms)[0m
+[31m  1 failing[0m
+
+[0m  1) checks routes for client
+       should send a response with code 200 and the right client in payload if he exists in db:
+[0m[31m     Uncaught TypeError: Cannot read property 'should' of undefined[0m[90m
+      at chai.request.get.end (C:\Users\Seb\Workspace\MSPR\api-rest\test\controller\clientController.test.js:18:22)
+      at Test.Request.callback (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\superagent\lib\node\index.js:716:12)
+      at parser (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\superagent\lib\node\index.js:916:18)
+      at IncomingMessage.res.on (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\superagent\lib\node\parsers\json.js:19:7)
+      at IncomingMessage.emit (events.js:194:15)
+      at endReadableNT (_stream_readable.js:1125:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
+[0m
+
+

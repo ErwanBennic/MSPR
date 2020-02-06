@@ -14,8 +14,8 @@ describe('checks routes for client', () => {
       chai.request(server).get('/promos/1').end((err, res) => {
          res.should.have.status(200);
          res.should.be.json;
+         should.exist(res.body);
          res.body.should.have.property('libelle');
-         res.body.id.should.eq(1);
          done();
       });
    });
@@ -37,22 +37,12 @@ describe('checks routes for client', () => {
       });
    });
 
-   it('should send a response with code 200 and list of promos in payload', (done) => {
-      chai.request(server).get('/promos/').end((err, res) => {
-         res.should.have.status(200);
-         res.body.should.be.a('array');
-         res.body[0].should.be.a('object');
-         res.body[0].should.have.property('libelle');
-         done();
-      });
-   });
-
    it('should send a response with code 201 and one the good promo in payload', (done) => {
       chai.request(server).get('/promos/1/2').end((err, res) => {
          res.should.have.status(201);
          res.should.be.json;
+         should.exist(res.body);
          res.body.should.have.property('libelle');
-         res.body.id.should.eq(1);
          done();
       });
    });

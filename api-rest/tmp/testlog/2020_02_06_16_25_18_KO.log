@@ -1,0 +1,10 @@
+
+> api-rest@0.0.0 test C:\Users\Seb\Workspace\MSPR\api-rest
+> mocha 'test/**/*.js' --recursive --full-trace --color --timeout 60000 --exit
+
+
+[0m[0m
+[0m  checks routes for client[0m
+[34m ⚡  Connection has been established successfully. ⚡
+[0mGET /clients/1 [32m200 [0m47.968 ms - 204[0m
+  [31m  1) should send a response with code 200 and the right client in payload if he exists in db[0m

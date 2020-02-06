@@ -1,0 +1,97 @@
+
+> api-rest@0.0.0 test C:\Users\Seb\Workspace\MSPR\api-rest
+> mocha 'test/**/*.js' --recursive --full-trace --color --timeout 60000 --exit
+
+
+[0m[0m
+[0m  checks routes for client[0m
+[34m ⚡  Connection has been established successfully. ⚡
+[0mGET /clients/1 [32m200 [0m43.431 ms - 204[0m
+  [32m  √[0m[90m should send a response with code 200 and the right client in payload if he exists in db[0m[31m (104ms)[0m
+[0mGET /clients/10000 [33m404 [0m5.270 ms - 27[0m
+  [32m  √[0m[90m should send a response with code 404 and error in payload if he doesnt exist in db[0m
+[0mGET /clients/crocodile [33m404 [0m2.924 ms - 27[0m
+  [32m  √[0m[90m should send a response with code 404 and error in payload if id is not a number[0m
+[0mGET /clients/ [33m404 [0m340.797 ms - 2273[0m
+  [31m  1) should send a response with code 200 and list of clients in payload[0m
+
+[0m  checks routes for client[0m
+  [31m  2) should send a response with code 200 and the right promo in payload if it exists in db[0m
+[0mGET /promos/10000 [33m404 [0m7.271 ms - 26[0m
+  [32m  √[0m[90m should send a response with code 404 and error in payload if he doesnt exist in db[0m
+[0mGET /promos/crocodile [33m404 [0m2.561 ms - 26[0m
+  [32m  √[0m[90m should send a response with code 404 and error in payload if id is not a number[0m
+[0mGET /promos/ [33m404 [0m17.922 ms - 2273[0m
+  [31m  3) should send a response with code 200 and list of promos in payload[0m
+  [31m  4) should send a response with code 201 and one the good promo in payload[0m
+[0mGET /promos/1 [0m- [0m- ms - -[0m
+
+[0m  check clientDto integrity[0m
+  [32m  √[0m[90m should init clientDto with promoDto from clientDao with a promo[0m
+  [32m  √[0m[90m should init clientDto with no promoDto from clientDao with no promo[0m
+
+[0m  check promoDto integrity[0m
+  [32m  √[0m[90m should return true if promo date is valid[0m
+  [32m  √[0m[90m should return false if promo date is not valid[0m
+
+
+[92m [0m[32m 9 passing[0m[90m (2m)[0m
+[31m  4 failing[0m
+
+[0m  1) checks routes for client
+       should send a response with code 200 and list of clients in payload:
+
+      [31mUncaught AssertionError: expected { Object (_events, _eventsCount, ...) } to have status code 200 but got 404[0m
+      [32m+ expected[0m [31m- actual[0m
+
+      [31m-404[0m
+      [32m+200[0m
+      [0m[90m
+      at chai.request.get.end (C:\Users\Seb\Workspace\MSPR\api-rest\test\controller\clientController.test.js:47:26)
+      at Test.Request.callback (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\superagent\lib\node\index.js:716:12)
+      at IncomingMessage.parser (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\superagent\lib\node\index.js:916:18)
+      at IncomingMessage.emit (events.js:194:15)
+      at endReadableNT (_stream_readable.js:1125:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
+[0m
+[0m  2) checks routes for client
+       should send a response with code 200 and the right promo in payload if it exists in db:
+[0m[31m     Error: Timeout of 60000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves. (C:\Users\Seb\Workspace\MSPR\api-rest\test\controller\promoController.test.js)[0m[90m
+      at Test.Runnable._timeoutError (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\mocha\lib\runnable.js:463:10)
+      at Timeout.<anonymous> (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\mocha\lib\runnable.js:267:24)
+      at ontimeout (timers.js:436:11)
+      at tryOnTimeout (timers.js:300:5)
+      at listOnTimeout (timers.js:263:5)
+      at Timer.processTimers (timers.js:223:10)
+[0m
+[0m  3) checks routes for client
+       should send a response with code 200 and list of promos in payload:
+
+      [31mUncaught AssertionError: expected { Object (_events, _eventsCount, ...) } to have status code 200 but got 404[0m
+      [32m+ expected[0m [31m- actual[0m
+
+      [31m-404[0m
+      [32m+200[0m
+      [0m[90m
+      at chai.request.get.end (C:\Users\Seb\Workspace\MSPR\api-rest\test\controller\promoController.test.js:42:26)
+      at Test.Request.callback (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\superagent\lib\node\index.js:716:12)
+      at IncomingMessage.parser (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\superagent\lib\node\index.js:916:18)
+      at IncomingMessage.emit (events.js:194:15)
+      at endReadableNT (_stream_readable.js:1125:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
+[0m
+[0m  4) checks routes for client
+       should send a response with code 201 and one the good promo in payload:
+[0m[31m     Uncaught TypeError: Cannot read property 'should' of undefined[0m[90m
+      at chai.request.get.end (C:\Users\Seb\Workspace\MSPR\api-rest\test\controller\promoController.test.js:15:14)
+      at Test.Request.callback (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\superagent\lib\node\index.js:728:3)
+      at ClientRequest.req.once.err (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\superagent\lib\node\index.js:647:10)
+      at Object.onceWrapper (events.js:277:13)
+      at ClientRequest.emit (events.js:189:13)
+      at Socket.socketOnEnd (_http_client.js:426:9)
+      at Socket.emit (events.js:194:15)
+      at endReadableNT (_stream_readable.js:1125:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
+[0m
+
+
