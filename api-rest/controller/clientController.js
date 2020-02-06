@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 const ClientDao = require('../repo/clientDao');
 const clientDao = new ClientDao();
-const logger = require('../helper/logger');
 
 router.get('/', async function (req, res, next) {
    const clients = await clientDao.getAllClients();

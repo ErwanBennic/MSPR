@@ -27,7 +27,7 @@ module.exports = class ClientDao {
 
    async savePromoForClient(promoId, userId) {
       try {
-         await Promoclient.create({id_promo : promoId, id_client : userId});
+         await Promoclient.upsert({id_promo : promoId, id_client : userId})
       } catch (error) {
          logger.red('clientDao.savePromoForClient', error);
       }

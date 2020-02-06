@@ -1,5 +1,3 @@
-const logger = require('../helper/logger')
-
 class PromoDto {
    constructor(promoDao) {
       this.code = promoDao.code;

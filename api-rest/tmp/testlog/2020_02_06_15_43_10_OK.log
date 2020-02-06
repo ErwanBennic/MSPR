@@ -1,0 +1,40 @@
+
+> api-rest@0.0.0 test C:\Users\Seb\Workspace\MSPR\api-rest
+> mocha 'test/**/*.js' --recursive --full-trace --color --timeout 60000 --exit
+
+
+[0m[0m
+[0m  checks routes for client[0m
+Connection has been established successfully.
+[0mGET /clients/1 [32m200 [0m49.839 ms - 286[0m
+  [32m  √[0m[90m should send a response with code 200 and the right client in payload if he exists in db[0m[31m (117ms)[0m
+[0mGET /clients/10000 [33m404 [0m4.352 ms - 27[0m
+  [32m  √[0m[90m should send a response with code 404 and error in payload if he doesnt exist in db[0m
+[0mGET /clients/crocodile [33m404 [0m3.001 ms - 27[0m
+  [32m  √[0m[90m should send a response with code 404 and error in payload if id is not a number[0m
+[0mGET /clients/ [32m200 [0m3.734 ms - 299[0m
+  [32m  √[0m[90m should send a response with code 200 and list of clients in payload[0m
+
+[0m  checks routes for client[0m
+[0mGET /promos/1 [32m200 [0m4.907 ms - 137[0m
+  [32m  √[0m[90m should send a response with code 200 and the right promo in payload if it exists in db[0m
+[0mGET /promos/10000 [33m404 [0m3.009 ms - 26[0m
+  [32m  √[0m[90m should send a response with code 404 and error in payload if he doesnt exist in db[0m
+[0mGET /promos/crocodile [33m404 [0m2.082 ms - 26[0m
+  [32m  √[0m[90m should send a response with code 404 and error in payload if id is not a number[0m
+[0mGET /promos/ [32m200 [0m2.339 ms - 308[0m
+  [32m  √[0m[90m should send a response with code 200 and list of promos in payload[0m
+[0mGET /promos/1/2 [32m201 [0m12.480 ms - 137[0m
+  [32m  √[0m[90m should send a response with code 201 and one the good promo in payload[0m
+
+[0m  check clientDto integrity[0m
+  [32m  √[0m[90m should init clientDto with promoDto from clientDao with a promo[0m
+  [32m  √[0m[90m should init clientDto with no promoDto from clientDao with no promo[0m
+
+[0m  check promoDto integrity[0m
+  [32m  √[0m[90m should return true if promo date is valid[0m
+  [32m  √[0m[90m should return false if promo date is not valid[0m
+
+
+[92m [0m[32m 13 passing[0m[90m (315ms)[0m
+

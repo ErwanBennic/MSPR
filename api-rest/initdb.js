@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const config = require('./config');
+const logger = require('./helper/logger');
 
 const sequelize = new Sequelize(config.DB_NAME, config.DB_USER, config.DB_PWD, {
    host: config.DB_HOST,
@@ -14,10 +15,10 @@ const sequelize = new Sequelize(config.DB_NAME, config.DB_USER, config.DB_PWD, {
 sequelize
    .authenticate()
    .then(() => {
-      console.log('Connection has been established successfully.');
+      logger.hello('Connection has been established successfully.');
    })
    .catch(err => {
-      console.error('Unable to connect to the database:', err);
+      logger.red('Unable to connect to the database:', err);
    });
 
 module.exports = sequelize;
