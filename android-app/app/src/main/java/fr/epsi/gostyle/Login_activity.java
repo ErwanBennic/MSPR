@@ -34,10 +34,8 @@ public class Login_activity extends Activity {
             this.startActivity(intent);
 
         } else {
-
             String msg="Login ou mot de passe incorrect";
             displayToast(msg);
-
         }
     }
 
