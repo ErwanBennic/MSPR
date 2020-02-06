@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class Login_activity extends Activity {
@@ -34,7 +35,13 @@ public class Login_activity extends Activity {
 
         } else {
 
+            String msg="Login ou mot de passe incorrect";
+            displayToast(msg);
 
         }
+    }
+
+    protected void displayToast(String msg){
+        Toast.makeText(this,msg,Toast.LENGTH_LONG).show();
     }
 }
