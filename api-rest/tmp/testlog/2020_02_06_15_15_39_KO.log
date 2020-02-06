@@ -1,0 +1,72 @@
+
+> api-rest@0.0.0 test C:\Users\Seb\Workspace\MSPR\api-rest
+> mocha 'test/**/*.js' --recursive --full-trace --color --timeout 60000 --exit
+
+
+[0m[0m
+[0m  checks routes for client[0m
+Connection has been established successfully.
+[0mGET /clients/1 [32m200 [0m70.053 ms - 286[0m
+  [32m  √[0m[90m should send a response with code 200 and the right client in payload if he exists in db[0m[31m (153ms)[0m
+[0mGET /clients/10000 [33m404 [0m4.740 ms - 27[0m
+  [32m  √[0m[90m should send a response with code 404 and error in payload if he doesnt exist in db[0m
+[0mGET /clients/crocodile [33m404 [0m3.224 ms - 27[0m
+  [32m  √[0m[90m should send a response with code 404 and error in payload if id is not a number[0m
+[0mGET /clients/ [32m200 [0m4.554 ms - 299[0m
+  [32m  √[0m[90m should send a response with code 200 and list of clients in payload[0m
+
+[0m  checks routes for client[0m
+[0mGET /promos/1 [32m200 [0m3.532 ms - 137[0m
+  [32m  √[0m[90m should send a response with code 200 and the right promo in payload if it exists in db[0m
+[0mGET /promos/10000 [33m404 [0m2.570 ms - 26[0m
+  [32m  √[0m[90m should send a response with code 404 and error in payload if he doesnt exist in db[0m
+[0mGET /promos/crocodile [33m404 [0m2.604 ms - 26[0m
+  [32m  √[0m[90m should send a response with code 404 and error in payload if id is not a number[0m
+[0mGET /promos/ [32m200 [0m3.172 ms - 308[0m
+  [32m  √[0m[90m should send a response with code 200 and list of promos in payload[0m
+[31m 15:15:41 [clientDao.savePromoForClient] - SequelizeUniqueConstraintError: Validation error
+[0mGET /promos/1/2 [32m201 [0m13.106 ms - 137[0m
+  [32m  √[0m[90m should send a response with code 201 and one the good promo in payload[0m
+
+[0m  check clientDto integrity[0m
+  [32m  √[0m[90m should init clientDto with promoDto from clientDao with a promo[0m
+  [32m  √[0m[90m should init clientDto with no promoDto from clientDao with no promo[0m
+
+[0m  check promoDto integrity[0m
+[36m 15:15:41 [tomorrowStr] - 2020-1-9
+[36m 15:15:41 [today] - Thu Feb 06 2020 15:15:42 GMT+0100 (GMT+01:00)
+[36m 15:15:41 [peremption] - Thu Jan 09 2020 00:00:00 GMT+0100 (GMT+01:00)
+  [31m  1) should return true if promo date is valid[0m
+[36m 15:15:41 [yesterdayStr] - 2020-1-5
+[36m 15:15:41 [today] - Thu Feb 06 2020 15:15:42 GMT+0100 (GMT+01:00)
+[36m 15:15:41 [peremption] - Sun Jan 05 2020 00:00:00 GMT+0100 (GMT+01:00)
+  [32m  √[0m[90m should return false if promo date is not valid[0m
+
+
+[92m [0m[32m 12 passing[0m[90m (368ms)[0m
+[31m  1 failing[0m
+
+[0m  1) check promoDto integrity
+       should return true if promo date is valid:
+
+      [31mAssertionError: expected false to be true[0m
+      [32m+ expected[0m [31m- actual[0m
+
+      [31m-false[0m
+      [32m+true[0m
+      [0m[90m
+      at Context.<anonymous> (C:\Users\Seb\Workspace\MSPR\api-rest\test\dto\promoDto.test.js:36:35)
+      at callFn (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\mocha\lib\runnable.js:395:21)
+      at Test.Runnable.run (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\mocha\lib\runnable.js:382:7)
+      at Runner.runTest (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\mocha\lib\runner.js:541:10)
+      at C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\mocha\lib\runner.js:667:12
+      at next (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\mocha\lib\runner.js:450:14)
+      at C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\mocha\lib\runner.js:460:7
+      at next (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\mocha\lib\runner.js:362:14)
+      at Immediate._onImmediate (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\mocha\lib\runner.js:428:5)
+      at runCallback (timers.js:705:18)
+      at tryOnImmediate (timers.js:676:5)
+      at processImmediate (timers.js:658:5)
+[0m
+
+

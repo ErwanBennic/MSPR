@@ -6,6 +6,9 @@
     "start": "npm run generate-dotenv && node -r dotenv/config ./bin/www",
     "nodemon": "npm run generate-dotenv && nodemon -r dotenv/config ./bin/www",
     "test": "mocha 'test/**/*.js' --recursive --full-trace --color --timeout 60000 --exit",
+    "test:log" : "bash ./script/logtestscript.sh",
+    "test:log:KO" : "bash ./script/logtestscriptko.sh",
+    "test:log:OK" : "bash ./script/logtestscriptok.sh",
     "generate-dotenv": "cp .env.default .env"
   },
   "dependencies": {

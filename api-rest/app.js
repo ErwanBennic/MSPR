@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./controller/indexController');
 var clientsRouter = require('./controller/clientController');
 var promosRouter = require('./controller/promoController');
 
@@ -22,7 +21,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const sequelize = require('./initdb');
 
-app.use('/', indexRouter);
 app.use('/clients', clientsRouter);
 app.use('/promos', promosRouter);
 

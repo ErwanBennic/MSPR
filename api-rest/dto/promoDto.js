@@ -1,4 +1,6 @@
-class Promo {
+const logger = require('../helper/logger')
+
+class PromoDto {
    constructor(promoDao) {
       this.code = promoDao.code;
       this.libelle = promoDao.libelle;
@@ -8,6 +10,10 @@ class Promo {
    }
 
    isValid() {
-      return new Date(this.dateperemption) > new Date();
+      const peremption  = new Date(this.dateperemption);
+      const today = new Date();
+      return  peremption > today;
    }
 }
+
+module.exports = PromoDto;
