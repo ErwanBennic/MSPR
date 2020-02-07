@@ -32,9 +32,9 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`id`, `nom`, `prenom`, `email`, `password`) VALUES
-(1, 'Banner', 'Bruce', 'brucebanner@ici.fr', 'brucebanner'),
-(2, 'Stark', 'Tony', 'tonystark@ici.fr', 'tonystark'),
-(3, 'Romanoff', 'Natasha', 'natasharomanoff@ici.fr', 'natasharomanoff');
+(1, 'Banner', 'Bruce', 'brucebanner@ici.fr', '$2b$10$ZkpYW7V21QJQjqnkG9O/ueWx6QSQ3m04ZP3fgHLAlBI9lOcuvSt.S'),
+(2, 'Stark', 'Tony', 'tonystark@ici.fr', '$2b$10$xuE8dyrFc99v4N3MsKL48OHuLobbc1PIr5FMKz.h7ezPXLPU2BHxq'),
+(3, 'Romanoff', 'Natasha', 'natasharomanoff@ici.fr', '$2b$10$L3Ajres1ksl55x3Sa1z9LeBNIFu7PLqYwuW9A3/NzHyYFxijc2.nq');
 
 -- --------------------------------------------------------
 
