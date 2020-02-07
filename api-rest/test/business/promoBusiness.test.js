@@ -3,6 +3,7 @@ const ClientDto = require('../../dto/clientDto');
 const PromoDto = require('../../dto/promoDto');
 const chai = require('chai');
 const logger = require('../../helper/logger');
+const promoBusiness = require('../../business/promoBusiness');
 
 const should = chai.should();
 
@@ -29,8 +30,8 @@ describe('check promoDto integrity', function () {
       }
 
       const promoDto = new PromoDto(mockPromoDao);
-
-      promoDto.isValid().should.be.true;
+      
+      promoBusiness.isValid(promoDto).should.be.true;
    });
 
 
@@ -45,7 +46,7 @@ describe('check promoDto integrity', function () {
       }
       const promoDto = new PromoDto(mockPromoDao);
 
-      promoDto.isValid().should.be.false;
+      promoBusiness.isValid(promoDto).should.be.false;
    });
 
 });

@@ -6,12 +6,6 @@ class PromoDto {
       this.marque = promoDao.marque;
       this.dateperemption = promoDao.dateperemption;
    }
-
-   isValid() {
-      const peremption  = new Date(this.dateperemption);
-      const today = new Date();
-      return  peremption > today;
-   }
 }
 
 module.exports = PromoDto;

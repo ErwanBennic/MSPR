@@ -1,0 +1,60 @@
+
+> api-rest@0.0.0 test C:\Users\Seb\Workspace\MSPR\api-rest
+> mocha 'test/**/*.js' --recursive --full-trace --color --timeout 60000 --exit
+
+
+[0m[0m
+[0m  checks routes for client[0m
+[34m ⚡  Connection has been established successfully. ⚡
+[0mGET /clients/1 [32m200 [0m45.726 ms - 204[0m
+  [32m  √[0m[90m should send a response with code 200 and the right client in payload if he exists in db[0m[31m (106ms)[0m
+[0mGET /clients/10000 [33m404 [0m4.394 ms - 27[0m
+  [32m  √[0m[90m should send a response with code 404 and error in payload if he doesnt exist in db[0m
+[0mGET /clients/crocodile [33m404 [0m3.872 ms - 27[0m
+  [32m  √[0m[90m should send a response with code 404 and error in payload if id is not a number[0m
+
+[0m  checks routes for client[0m
+[0mPOST /login/ [33m404 [0m20.700 ms - 37[0m
+  [31m  1) should send a response with code 200 and the right client in payload if credentials are ok[0m
+
+[0m  checks routes for client[0m
+[0mGET /promos/1 [32m200 [0m5.882 ms - 130[0m
+  [32m  √[0m[90m should send a response with code 200 and the right promo in payload if it exists in db[0m
+[0mGET /promos/10000 [33m404 [0m2.048 ms - 26[0m
+  [32m  √[0m[90m should send a response with code 404 and error in payload if he doesnt exist in db[0m
+[0mGET /promos/crocodile [33m404 [0m2.683 ms - 26[0m
+  [32m  √[0m[90m should send a response with code 404 and error in payload if id is not a number[0m
+[0mGET /promos/1/2 [32m201 [0m14.456 ms - 130[0m
+  [32m  √[0m[90m should send a response with code 201 and one the good promo in payload[0m
+
+[0m  check clientDto integrity[0m
+  [32m  √[0m[90m should init clientDto with promoDto from clientDao with a promo[0m
+  [32m  √[0m[90m should init clientDto with no promoDto from clientDao with no promo[0m
+
+[0m  check promoDto integrity[0m
+  [32m  √[0m[90m should return true if promo date is valid[0m
+  [32m  √[0m[90m should return false if promo date is not valid[0m
+
+
+[92m [0m[32m 11 passing[0m[90m (335ms)[0m
+[31m  1 failing[0m
+
+[0m  1) checks routes for client
+       should send a response with code 200 and the right client in payload if credentials are ok:
+
+      [31mUncaught AssertionError: expected { Object (_events, _eventsCount, ...) } to have status code 200 but got 404[0m
+      [32m+ expected[0m [31m- actual[0m
+
+      [31m-404[0m
+      [32m+200[0m
+      [0m[90m
+      at chai.request.post.send.end (C:\Users\Seb\Workspace\MSPR\api-rest\test\controller\loginController.test.js:21:26)
+      at Test.Request.callback (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\superagent\lib\node\index.js:716:12)
+      at parser (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\superagent\lib\node\index.js:916:18)
+      at IncomingMessage.res.on (C:\Users\Seb\Workspace\MSPR\api-rest\node_modules\superagent\lib\node\parsers\json.js:19:7)
+      at IncomingMessage.emit (events.js:194:15)
+      at endReadableNT (_stream_readable.js:1125:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
+[0m
+
+

@@ -1,13 +1,14 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
 
-var clientsRouter = require('./controller/clientController');
-var promosRouter = require('./controller/promoController');
+let clientsController = require('./controller/clientController');
+let promosController = require('./controller/promoController');
+let loginController = require('./controller/loginController');
 
-var app = express();
+let app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,8 +22,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const sequelize = require('./initdb');
 
-app.use('/clients', clientsRouter);
-app.use('/promos', promosRouter);
+app.use('/clients', clientsController);
+app.use('/promos', promosController);
+app.use('/login', loginController);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
