@@ -6,16 +6,7 @@ import android.os.Handler;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.zxing.Result;
-
-import org.json.JSONObject;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -58,35 +49,16 @@ public class SimpleScannerActivity extends BaseScannerActivity implements ZXingS
             }
         }, 5000);
 
-        final Intent myIntent = new Intent(this, MainActivity.class);
-
         String url = rawResult.getText();
         System.out.println(url);
 
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
+        String[] split = url.split("/");
 
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            // Contains the json data
-                            JSONObject jsonObject = new JSONObject(response);
-                            myIntent.putExtra("JSON_NOM", "Nom : " + jsonObject.getString("name"));
-                            startActivity(myIntent);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.e("Error: " + error.toString());
-            }
-        });
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
+        System.out.println(split[split.length-1]);
+
+        final Intent myIntent = new Intent(this, MainActivity.class);
+        startActivity(myIntent);
+
+        // FAIRE REQUETTE HTTP POUR AJOUTER LA PROMO A L'USER
     }
 }

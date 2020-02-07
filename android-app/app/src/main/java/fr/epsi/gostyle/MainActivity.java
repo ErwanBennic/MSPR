@@ -1,26 +1,36 @@
 package fr.epsi.gostyle;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.os.Bundle;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.zxing.Result;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import com.google.zxing.Result;
 
 public class MainActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     private static final int ZXING_CAMERA_PERMISSION = 1;
     private Class<?> mClss;
+    // ToDo: remplacer id client
+    private String urlPromos = "http://192.168.36.246:3000/clients/1";
 
     public static void display(MainActivity activity) {
         Intent intent = new Intent(activity,MainActivity.class);
@@ -32,43 +42,33 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String newString;
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            if(extras == null) {
-                newString= null;
-            } else {
-                newString= extras.getString("JSON_NOM");
-                System.out.println(newString);
-            }
-        } else {
-            newString = (String) savedInstanceState.getSerializable("JSON_NOM");
-            System.out.println(newString);
-        }
+        RequestQueue queue = Volley.newRequestQueue(this);
 
         // Get the widgets reference from XML layout
         LinearLayout lL = (LinearLayout) findViewById(R.id.listeCodes);
 
-        // Create a TextView programmatically.
-        TextView tv = new TextView(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, this.urlPromos,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            // Contains the json data
+                            JSONObject client = new JSONObject(response);
+                            Object test = client.get("promos");
+                            JSONArray test2 = new JSONArray(test);
+                            System.out.println(test2.getJSONArray(1).get(1));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: " + error.toString());
+            }
+        });
 
-        // Create a LayoutParams for TextView
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, // Width of TextView
-                LinearLayout.LayoutParams.WRAP_CONTENT); // Height of TextView
-
-        // Apply the layout parameters to TextView widget
-        tv.setLayoutParams(lp);
-
-        tv.setText(newString);
-
-        // Set a text color for TextView text
-        tv.setTextColor(Color.parseColor("#000000"));
-
-        lL.setPadding(100, 10, 10, 10);
-        // Add newly created TextView to parent view group (RelativeLayout)
-        lL.addView(tv);
-
+        queue.add(stringRequest);
     }
 
     public void launchSimpleActivity(View v) {
