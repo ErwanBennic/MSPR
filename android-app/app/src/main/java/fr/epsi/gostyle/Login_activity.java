@@ -27,7 +27,7 @@ public class Login_activity extends Activity {
     public void login(View v) {
         EditText username = (EditText) findViewById(R.id.login);
         EditText password = (EditText) findViewById(R.id.password);
-        if (username.getText().toString().equals("jdasilv") && password.getText().toString().equals("azerty")) {
+        if (username.getText().toString().equals("maxime.audy@epsi.fr") && password.getText().toString().equals("donnees_test")) {
 
             Intent intent = new Intent(this,MainActivity.class);
             this.startActivity(intent);
