@@ -17,9 +17,11 @@ exports.bcryptHash = (password) => {
 }
 
 exports.bcryptCompare = async (password, dbPassword) => {
-   const res = await bcrypt.compare(password, dbPassword);
-
-   if(res) {
+   try {
+      const res = await bcrypt.compare(password, dbPassword);
       return res;
+   } catch (error) {
+      logger.red("error", error)
    }
+
 }

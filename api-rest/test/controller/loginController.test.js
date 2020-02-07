@@ -45,7 +45,7 @@ describe('checks routes for login', () => {
          password : "brucebanner"
       }
       chai.request(server).post('/login/').send(body).end((err, res) => {
-         res.should.have.status(404);
+         res.should.have.status(403);
          should.exist(res.body);
          res.body.should.have.property('error');
          done();
@@ -58,7 +58,7 @@ describe('checks routes for login', () => {
          password : "girafe"
       }
       chai.request(server).post('/login/').send(body).end((err, res) => {
-         res.should.have.status(404);
+         res.should.have.status(403);
          should.exist(res.body);
          res.body.should.have.property('error');
          done();
