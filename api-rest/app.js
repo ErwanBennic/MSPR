@@ -4,11 +4,19 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
+var swaggerUi = require('swagger-ui-express'),
+    swaggerDocument = require('./swagger.json');
+
+
+
 let clientsController = require('./controller/clientController');
 let promosController = require('./controller/promoController');
 let loginController = require('./controller/loginController');
 
 let app = express();
+
+//swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -23,7 +23,7 @@ router.get('/:promoId/', async (req, res, next) => {
    }
 });
 
-router.get('/:promoId/:userId', async (req, res, next) => {
+router.post('/:promoId/:userId', async (req, res, next) => {
    const promoFromDao = await promoDao.getPromoById(req.params.promoId);
    if(promoFromDao) {
       const promoDto = new PromoDto(promoFromDao);

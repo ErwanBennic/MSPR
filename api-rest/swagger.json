@@ -1,0 +1,150 @@
+{
+   "swagger": "2.0",
+   "info": {
+     "version": "1.0.0",
+     "title": "API promotions GoStyle",
+     "description": "API permettant de récupérer des données concernant des clients et des promotions",
+     "license": {
+       "name": "MIT",
+       "url": "https://opensource.org/licenses/MIT"
+     }
+   },
+   "host": "localhost:3000",
+   "basePath": "/api/docs",
+   "tags": [
+     {
+       "name": "ClAPI GoStyle - gestion des clients et des promotions.",
+       "description": "API permettant de récupérer un client et des promotions"
+     }
+   ],
+   "schemes": [
+     "http"
+   ],
+   "consumes": [
+     "application/json"
+   ],
+   "produces": [
+     "application/json"
+   ],
+   "paths": {
+     "/clients/{id}": {
+       "parameters": [
+         {
+           "name": "id",
+           "in": "path",
+           "required": true,
+           "description": "L'id du client que l'on souhaite trouver",
+           "type": "string"
+         }
+       ],
+       "get": {
+         "tags": [
+           "clients"
+         ],
+         "description": "Récupère un client et ses promotions grâce à l'id du client.",
+         "responses": {
+           "200": {
+             "description": "OK"
+           },
+           "204": {
+             "description": "No client found"
+           }
+         }
+       }
+      },
+     "/login": {
+       "post": {
+         "tags": [
+           "login"
+         ],
+         "description": "Vérifie le login et le mot de passe transmis dans le corps de la requête et indique si le client peut se connecter ou non.",
+         "parameters": [
+            {
+              "name": "email",
+              "in": "body",
+              "description": "Email du client souhaitant se connecter"
+            },
+            {
+              "name": "password",
+              "in": "body",
+              "description": "Mot de passe du client souhaitant se connecter"
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+         "responses": {
+           "200": {
+             "description": "Client is found"
+           },
+           "403": {
+             "description": "Invalid login or password"
+           }
+         }
+       }
+      },
+      "/promos/{promoId}": {
+         "parameters": [
+           {
+             "name": "promoId",
+             "in": "path",
+             "required": true,
+             "description": "L'id de la promotion que l'on souhaite trouver",
+             "type": "string"
+           }
+         ],
+         "get": {
+           "tags": [
+             "promotions"
+           ],
+           "description": "Récupère une promotion grâce à l'id de la promotion.",
+           "responses": {
+             "200": {
+               "description": "OK"
+             },
+             "204": {
+               "description": "Promo not valid anymore"
+             }
+             },
+             "404": {
+               "description": "No promo found"
+             }
+           }
+         },
+         "/promos/{promoId}/{userId}": {
+            "parameters": [
+              {
+                "name": "promoId",
+                "in": "path",
+                "required": true,
+                "description": "L'id de la promotion que l'on souhaite trouver",
+                "type": "string"
+              },
+              {
+                "name": "userId",
+                "in": "path",
+                "required": true,
+                "description": "L'id du client que l'on souhaite associer à la promotion trouvée",
+                "type": "string"
+              }
+            ],
+            "post": {
+              "tags": [
+                "promotions clients"
+              ],
+              "description": "Renvoie une promotion grâce à l'id de la promotion et l'associe en base de données avec le client.",
+              "responses": {
+                "201": {
+                  "description": "Created"
+                },
+                "204": {
+                  "description": "Promo not valid anymore"
+                }
+                },
+                "404": {
+                  "description": "No promo found"
+                }
+              }
+            }
+   }
+ }

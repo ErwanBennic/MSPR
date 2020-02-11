@@ -11,7 +11,7 @@ router.get('/:id', async function (req, res, next) {
       const clientDto = new ClientDto(clientFromDao);
       res.status(200).json(clientDto);
    } else {
-      res.status(404).send({"error" : "No client found"});
+      res.status(204).send({"error" : "No client found"});
    }
 });
 
