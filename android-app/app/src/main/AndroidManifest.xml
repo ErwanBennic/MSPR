@@ -23,6 +23,11 @@
 
         <activity android:name=".SplashScreen"
             android:label="GoStyle">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".Login_activity"
@@ -31,11 +36,6 @@
 
         <activity android:name=".MainActivity"
             android:label="main_activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".SimpleScannerActivity"
