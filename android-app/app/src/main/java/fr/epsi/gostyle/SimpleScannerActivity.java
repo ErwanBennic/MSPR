@@ -75,7 +75,7 @@ public class SimpleScannerActivity extends BaseScannerActivity implements ZXingS
                     @Override
                     public void onResponse(String response) {
                         try {
-                            Toast.makeText(SimpleScannerActivity.this, "Promotion ajoutée à l'utilisateur.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SimpleScannerActivity.this, "Promotion associée à l'utilisateur.", Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

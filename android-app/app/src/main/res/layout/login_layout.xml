@@ -30,7 +30,7 @@
             android:layout_gravity="center_horizontal|center_vertical"
             android:layout_marginTop="10dp"
             android:inputType="textPassword"
-            android:hint="mot de passe"
+            android:hint="Mot de passe"
             android:textAlignment="center" />
 
         <Button
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="60dp"
-            android:text="Log In" />
+            android:text="Se connecter" />
 
     </LinearLayout>
 
