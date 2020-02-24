@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -23,6 +24,9 @@ import com.google.zxing.Result;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
+import fr.epsi.gostyle.Models.Promotion;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class MainActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
@@ -30,7 +34,9 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     private static final int ZXING_CAMERA_PERMISSION = 1;
     private Class<?> mClss;
     // ToDo: remplacer id client
-    private String urlPromos = "http://192.168.36.246:3000/clients/1";
+    private String urlPromos = "http://10.42.61.113:3000/clients/1";
+
+    private static ArrayList<Promotion> userPromotions = new ArrayList<Promotion>();
 
     public static void display(MainActivity activity) {
         Intent intent = new Intent(activity,MainActivity.class);
@@ -44,9 +50,6 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        // Get the widgets reference from XML layout
-        LinearLayout lL = (LinearLayout) findViewById(R.id.listeCodes);
-
         StringRequest stringRequest = new StringRequest(Request.Method.GET, this.urlPromos,
                 new Response.Listener<String>() {
                     @Override
@@ -54,9 +57,19 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
                         try {
                             // Contains the json data
                             JSONObject client = new JSONObject(response);
-                            Object test = client.get("promos");
-                            JSONArray test2 = new JSONArray(test);
-                            System.out.println(test2.getJSONArray(1).get(1));
+                            for(int i = 0;i<=client.getJSONArray("promos").length()-1;i++){
+                                Object currentObjectPromotion = client.getJSONArray("promos").get(i);
+                                JSONObject currentPromotion = new JSONObject(currentObjectPromotion.toString());
+
+                                Promotion promotion = new Promotion();
+                                promotion.setCode((String) currentPromotion.get("code"));
+                                promotion.setLibelle((String) currentPromotion.get("libelle"));
+                                promotion.setPourcentage((int) currentPromotion.get("pourcentage"));
+                                promotion.setDatepremption((String) currentPromotion.get("dateperemption"));
+                                promotion.setMarque((String) currentPromotion.get("marque"));
+
+                                MainActivity.userPromotions.add(promotion);
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -69,6 +82,16 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
         });
 
         queue.add(stringRequest);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        ListView laListView = findViewById(R.id.listOfPromotions);
+
+        ListArrayAdapter promotions = new ListArrayAdapter(this, R.layout.text_list_item_promotion, MainActivity.userPromotions);
+        System.out.println(MainActivity.userPromotions);
+        laListView.setAdapter(promotions);
     }
 
     public void launchSimpleActivity(View v) {

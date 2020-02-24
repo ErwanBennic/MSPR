@@ -12,12 +12,12 @@
     <TextView
         android:id="@+id/codes"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center"
+        android:padding="10dp"
         android:text="@string/mes_codes"
         android:textSize="20sp"
-        android:padding="10dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <View
         android:layout_width="200dp"
@@ -25,25 +25,16 @@
         android:layout_gravity="center"
         android:background="#808080" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="10dp">
-
-        <LinearLayout
-            android:id="@+id/listeCodes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-        </LinearLayout>
-    </ScrollView>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:paddingTop="490dp">
+        android:orientation="vertical"
+        android:paddingTop="0dp">
+
+        <ListView
+            android:id="@+id/listOfPromotions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <include layout="@layout/footer" />
     </LinearLayout>
