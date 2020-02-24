@@ -21,16 +21,17 @@ describe('checks routes for promos', () => {
    });
 
 
-   it('should send a response with code 204 and error in payload if he doesnt exist in db', (done) => {
+   it('should send a response with code 404 and error in payload if he doesnt exist in db', (done) => {
       chai.request(server).get('/promos/10000').end((err, res) => {
-         res.should.have.status(204);
+         res.should.have.status(404);
+         res.body.should.have.property('error');
          done();
       });
    });
 
-   it('should send a response with code 404 and error in payload if id is not a number', (done) => {
+   it('should send a response with code 400 and error in payload if id is not a number', (done) => {
       chai.request(server).get('/promos/crocodile').end((err, res) => {
-         res.should.have.status(404);
+         res.should.have.status(400);
          res.body.should.have.property('error');
          done();
       });

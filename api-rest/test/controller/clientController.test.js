@@ -22,17 +22,18 @@ describe('checks routes for client', () => {
    });
 
 
-   it('should send a response with code 204 and error in payload if he doesnt exist in db', (done) => {
+   it('should send a response with code 404 and error in payload if he doesnt exist in db', (done) => {
       chai.request(server).get('/clients/10000').end((err, res) => {
-         res.should.have.status(204);
+         res.should.have.status(404);
          should.exist(res.body);
+         res.body.should.have.property('error');
          done();
       });
    });
 
-   it('should send a response with code 404 and error in payload if id is not a number', (done) => {
+   it('should send a response with code 400 and error in payload if id is not a number', (done) => {
       chai.request(server).get('/clients/crocodile').end((err, res) => {
-         res.should.have.status(404);
+         res.should.have.status(400);
          should.exist(res.body);
          res.body.should.have.property('error');
          done();
