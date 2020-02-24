@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +20,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.zxing.Result;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -34,9 +32,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     private static final int ZXING_CAMERA_PERMISSION = 1;
     private Class<?> mClss;
     // ToDo: remplacer id client
-    private String urlPromos = "http://10.42.61.113:3000/clients/1";
-
-    private static ArrayList<Promotion> userPromotions = new ArrayList<Promotion>();
+    private String urlPromos = "http://172.20.10.3:3000/clients/1";
 
     public static void display(MainActivity activity) {
         Intent intent = new Intent(activity,MainActivity.class);
@@ -50,47 +46,50 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, this.urlPromos,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            // Contains the json data
-                            JSONObject client = new JSONObject(response);
-                            for(int i = 0;i<=client.getJSONArray("promos").length()-1;i++){
-                                Object currentObjectPromotion = client.getJSONArray("promos").get(i);
-                                JSONObject currentPromotion = new JSONObject(currentObjectPromotion.toString());
-
-                                Promotion promotion = new Promotion();
-                                promotion.setCode((String) currentPromotion.get("code"));
-                                promotion.setLibelle((String) currentPromotion.get("libelle"));
-                                promotion.setPourcentage((int) currentPromotion.get("pourcentage"));
-                                promotion.setDatepremption((String) currentPromotion.get("dateperemption"));
-                                promotion.setMarque((String) currentPromotion.get("marque"));
-
-                                MainActivity.userPromotions.add(promotion);
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.e("Error: " + error.toString());
-            }
-        });
-
+        StringRequest stringRequest = getPromotionsOfUser();
         queue.add(stringRequest);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        ListView laListView = findViewById(R.id.listOfPromotions);
+    private StringRequest getPromotionsOfUser() {
+        return new StringRequest(Request.Method.GET, this.urlPromos,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                ArrayList<Promotion> userPromotions = new ArrayList<Promotion>();
 
-        ListArrayAdapter promotions = new ListArrayAdapter(this, R.layout.text_list_item_promotion, MainActivity.userPromotions);
-        System.out.println(MainActivity.userPromotions);
+                                // Contains the json data
+                                JSONObject client = new JSONObject(response);
+                                for(int i = 0;i<=client.getJSONArray("promos").length()-1;i++){
+                                    Object currentObjectPromotion = client.getJSONArray("promos").get(i);
+                                    JSONObject currentPromotion = new JSONObject(currentObjectPromotion.toString());
+
+                                    Promotion promotion = new Promotion();
+                                    promotion.setCode((String) currentPromotion.get("code"));
+                                    promotion.setLibelle((String) currentPromotion.get("libelle"));
+                                    promotion.setPourcentage((int) currentPromotion.get("pourcentage"));
+                                    promotion.setDatepremption((String) currentPromotion.get("dateperemption"));
+                                    promotion.setMarque((String) currentPromotion.get("marque"));
+
+                                    userPromotions.add(promotion);
+                                }
+
+                                setListView(userPromotions);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    VolleyLog.e("Error: " + error.toString());
+                }
+            });
+    }
+
+    private void setListView(ArrayList<Promotion> userPromotions) {
+        ListView laListView = findViewById(R.id.listOfPromotions);
+        ListArrayAdapter promotions = new ListArrayAdapter(MainActivity.this, R.layout.text_list_item_promotion, userPromotions);
         laListView.setAdapter(promotions);
     }
 
