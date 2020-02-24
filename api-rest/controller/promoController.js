@@ -10,33 +10,32 @@ const clientDao = new ClientDao();
 var router = express.Router();
 
 router.get('/:promoId/', async (req, res, next) => {
+   if (isNaN(parseInt(req.params.promoId))) return res.status(404).send({ "error": "bad request" })
+
+
    const promoFromDao = await promoDao.getPromoById(req.params.promoId);
-   if(promoFromDao) {
+   if (promoFromDao) {
       const promoDto = new PromoDto(promoFromDao);
-      if(promoBusiness.isValid(promoDto)){
-         res.status(200).json(promoDto);
-      } else {
-         res.status(204).send({"error" : "Promo not valid anymore"})
+      if (promoBusiness.isValid(promoDto)) {
+         return res.status(200).json(promoDto);
       }
-   } else {
-      res.status(404).send({"error" : "No promo found"});
    }
+   res.sendStatus(204);
 });
 
 router.post('/:promoId/:userId', async (req, res, next) => {
    const promoFromDao = await promoDao.getPromoById(req.params.promoId);
-   if(promoFromDao) {
+   if (promoFromDao) {
       const promoDto = new PromoDto(promoFromDao);
-      if(promoBusiness.isValid(promoDto)){
+      if (promoBusiness.isValid(promoDto)) {
          await clientDao.savePromoForClient(req.params.promoId, req.params.userId);
          res.status(201).json(promoDto);
       } else {
-         res.status(204).send({"error" : "Promo not valid anymore"})
+         res.sendStatus(204);
       }
    } else {
-      res.status(404).send({"error" : "No promo found"});
+      res.status(404).send({ "error": "No promo found" });
    }
-
 });
 
 module.exports = router;

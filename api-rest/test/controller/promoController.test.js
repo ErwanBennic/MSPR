@@ -2,9 +2,9 @@ const chai = require('chai');
 const should = chai.should();
 const chaiHttp = require('chai-http');
 const assert = require('assert');
-const server = require('../../app');
+const server = require('../../servertest');
 
-describe('checks routes for client', () => {
+describe('checks routes for promos', () => {
 
    beforeEach(function() {
       chai.use(chaiHttp);
@@ -21,10 +21,9 @@ describe('checks routes for client', () => {
    });
 
 
-   it('should send a response with code 404 and error in payload if he doesnt exist in db', (done) => {
+   it('should send a response with code 204 and error in payload if he doesnt exist in db', (done) => {
       chai.request(server).get('/promos/10000').end((err, res) => {
-         res.should.have.status(404);
-         res.body.should.have.property('error');
+         res.should.have.status(204);
          done();
       });
    });
@@ -38,7 +37,7 @@ describe('checks routes for client', () => {
    });
 
    it('should send a response with code 201 and one the good promo in payload', (done) => {
-      chai.request(server).get('/promos/1/2').end((err, res) => {
+      chai.request(server).post('/promos/1/2').end((err, res) => {
          res.should.have.status(201);
          res.should.be.json;
          should.exist(res.body);

@@ -1,10 +1,7 @@
 var assert = require('assert');
-const ClientDto = require('../../dto/clientDto');
 const PromoDto = require('../../dto/promoDto');
 const chai = require('chai');
-const logger = require('../../helper/logger');
 const promoBusiness = require('../../business/promoBusiness');
-
 const should = chai.should();
 
 

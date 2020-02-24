@@ -3,7 +3,6 @@ const LoginDto = require('../dto/loginDto');
 const LoginDao = require('../repo/loginDao');
 const ClientDto = require('../dto/clientDto');
 const loginBusiness = require('../business/loginBusiness');
-const logger = require('../helper/logger');
 
 const loginDao = new LoginDao();
 

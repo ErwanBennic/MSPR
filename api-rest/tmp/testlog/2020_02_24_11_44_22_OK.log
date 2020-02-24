@@ -1,0 +1,47 @@
+
+> api-rest@0.0.0 test C:\Users\Seb\Workspace\MSPR\api-rest
+> mocha 'test/**/*.js' --recursive --full-trace --color --timeout 60000 --exit
+
+
+[0m[0m
+[0m  check promoDto integrity[0m
+  [32m  √[0m[90m should return true if promo date is valid[0m
+  [32m  √[0m[90m should return false if promo date is not valid[0m
+
+[0m  checks routes for client[0m
+[34m ⚡  Connection has been established successfully. ⚡
+[34m ⚡  Connection has been established successfully. ⚡
+[0mGET /clients/1 [32m200 [0m33.653 ms - 204[0m
+  [32m  √[0m[90m should send a response with code 200 and the right client in payload if he exists in db[0m[33m (63ms)[0m
+[0mGET /clients/10000 [32m204 [0m5.565 ms - -[0m
+  [32m  √[0m[90m should send a response with code 204 and error in payload if he doesnt exist in db[0m
+[0mGET /clients/crocodile [33m404 [0m0.588 ms - 23[0m
+  [32m  √[0m[90m should send a response with code 404 and error in payload if id is not a number[0m
+
+[0m  checks routes for login[0m
+[0mPOST /login/ [32m200 [0m107.044 ms - 204[0m
+  [32m  √[0m[90m should send a response with code 200 and the right client in payload if credentials are ok[0m[31m (110ms)[0m
+[0mPOST /login/ [33m400 [0m0.451 ms - 26[0m
+  [32m  √[0m[90m should send a response with code 400 and error in payload if there is missing parameter[0m
+[0mPOST /login/ [33m403 [0m2.786 ms - 37[0m
+  [32m  √[0m[90m should send a response with code 403 and error in payload if email doesn't exist[0m
+[0mPOST /login/ [33m403 [0m89.637 ms - 37[0m
+  [32m  √[0m[90m should send a response with code 404 and error in payload if password doesn't match a right email[0m[31m (93ms)[0m
+
+[0m  checks routes for promos[0m
+[0mGET /promos/1 [32m200 [0m3.659 ms - 130[0m
+  [32m  √[0m[90m should send a response with code 200 and the right promo in payload if it exists in db[0m
+[0mGET /promos/10000 [32m204 [0m1.949 ms - -[0m
+  [32m  √[0m[90m should send a response with code 204 and error in payload if he doesnt exist in db[0m
+[0mGET /promos/crocodile [33m404 [0m0.616 ms - 23[0m
+  [32m  √[0m[90m should send a response with code 404 and error in payload if id is not a number[0m
+[0mPOST /promos/1/2 [32m201 [0m11.448 ms - 130[0m
+  [32m  √[0m[90m should send a response with code 201 and one the good promo in payload[0m
+
+[0m  check clientDto integrity[0m
+  [32m  √[0m[90m should init clientDto with promoDto from clientDao with a promo[0m
+  [32m  √[0m[90m should init clientDto with no promoDto from clientDao with no promo[0m
+
+
+[92m [0m[32m 15 passing[0m[90m (459ms)[0m
+

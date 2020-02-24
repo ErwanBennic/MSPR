@@ -1,10 +1,8 @@
 const chai = require('chai');
-const ClientDto = require('../../dto/clientDto');
-
 const should = chai.should();
 const chaiHttp = require('chai-http');
 const assert = require('assert');
-const server = require('../../app');
+const server = require('../../servertest');
 
 describe('checks routes for login', () => {
 
@@ -39,7 +37,7 @@ describe('checks routes for login', () => {
       });
    });
 
-   it('should send a response with code 404 and error in payload if email doesn\'t exist', (done) => {
+   it('should send a response with code 403 and error in payload if email doesn\'t exist', (done) => {
       const body = {
          email : "girafe@ici.fr",
          password : "brucebanner"

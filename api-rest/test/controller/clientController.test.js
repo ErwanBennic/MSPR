@@ -1,10 +1,8 @@
 const chai = require('chai');
-const ClientDto = require('../../dto/clientDto');
-
 const should = chai.should();
 const chaiHttp = require('chai-http');
 const assert = require('assert');
-const server = require('../../app');
+const server = require('../../servertest');
 
 describe('checks routes for client', () => {
 
@@ -24,11 +22,10 @@ describe('checks routes for client', () => {
    });
 
 
-   it('should send a response with code 404 and error in payload if he doesnt exist in db', (done) => {
+   it('should send a response with code 204 and error in payload if he doesnt exist in db', (done) => {
       chai.request(server).get('/clients/10000').end((err, res) => {
-         res.should.have.status(404);
+         res.should.have.status(204);
          should.exist(res.body);
-         res.body.should.have.property('error');
          done();
       });
    });
