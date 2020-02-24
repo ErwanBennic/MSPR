@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class Login_activity extends Activity {
 
@@ -27,7 +30,18 @@ public class Login_activity extends Activity {
     public void login(View v) {
         EditText username = (EditText) findViewById(R.id.login);
         EditText password = (EditText) findViewById(R.id.password);
-        if (username.getText().toString().equals("maxime.audy@epsi.fr") && password.getText().toString().equals("donnees_test")) {
+
+        //Utiliser Volley pour post un user
+
+        JSONObject postData = new JSONObject();
+        try {
+            postData.put("name", username.getText().toString());
+            postData.put("pass", password.getText().toString());
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+       /* if (username.getText().toString().equals("maxime.audy@epsi.fr") && password.getText().toString().equals("donnees_test")) {
 
             Intent intent = new Intent(this,MainActivity.class);
             this.startActivity(intent);
@@ -35,7 +49,7 @@ public class Login_activity extends Activity {
         } else {
             String msg="Login ou mot de passe incorrect";
             displayToast(msg);
-        }
+        }*/
     }
 
     protected void displayToast(String msg){
