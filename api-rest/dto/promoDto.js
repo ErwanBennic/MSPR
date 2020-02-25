@@ -5,6 +5,7 @@ class PromoDto {
       this.pourcentage = promoDao.pourcentage;
       this.marque = promoDao.marque;
       this.dateperemption = promoDao.dateperemption;
+      this.image = promoDao.image;
    }
 }
 

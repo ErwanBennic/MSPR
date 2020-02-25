@@ -24,7 +24,11 @@ Promo.init({
    dateperemption: {
       type: Sequelize.DATE,
       allowNull: false
-   }
+   },
+    image: {
+      type: Sequelize.STRING,
+        allowNull: false
+    }
 }, {
    sequelize,
    modelName: 'promo'

@@ -6,6 +6,7 @@ public class Promotion {
     private int pourcentage;
     private String marque;
     private String datepremption;
+    private String image;
 
     public String getCode() {
         return code;
@@ -45,5 +46,13 @@ public class Promotion {
 
     public void setDatepremption(String datepremption) {
         this.datepremption = datepremption;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

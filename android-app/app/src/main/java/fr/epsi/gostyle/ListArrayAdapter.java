@@ -5,7 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -34,9 +37,12 @@ public class ListArrayAdapter extends ArrayAdapter {
 
         TextView textViewTitle = matchListItem.findViewById(R.id.textViewTitle);
         TextView textViewDate = matchListItem.findViewById(R.id.textViewDate);
+        ImageView imageView = matchListItem.findViewById(R.id.imagePromo);
 
         textViewTitle.setText(promotion.getLibelle());
         textViewDate.setText(promotion.getMarque());
+
+        Picasso.get().load(promotion.getImage()).into(imageView);
 
         return matchListItem;
     }

@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     private static final int ZXING_CAMERA_PERMISSION = 1;
     private Class<?> mClss;
     // ToDo: remplacer id client
-    private String urlPromos = "http://172.20.10.3:3000/clients/1";
+    private String urlPromos = "http://172.20.10.6:3000/clients/1";
 
     public static void display(MainActivity activity) {
         Intent intent = new Intent(activity,MainActivity.class);
@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
                                     JSONObject currentPromotion = new JSONObject(currentObjectPromotion.toString());
 
                                     Promotion promotion = new Promotion();
+                                    promotion.setImage((String) currentPromotion.get("image"));
                                     promotion.setCode((String) currentPromotion.get("code"));
                                     promotion.setLibelle((String) currentPromotion.get("libelle"));
                                     promotion.setPourcentage((int) currentPromotion.get("pourcentage"));
