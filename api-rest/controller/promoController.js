@@ -38,4 +38,14 @@ router.post('/:promoId/:userId', async (req, res, next) => {
    }
 });
 
+router.delete('/:promoId/:userId', async (req, res, next) => {
+   try {
+      await clientDao.deletePromoForClient(req.params.promoId, req.params.userId);
+      res.sendStatus(204);
+   } catch (error) {
+      console.log(error);
+      res.status(404).send({"error":"Promo not found"});
+   }
+});
+
 module.exports = router;
