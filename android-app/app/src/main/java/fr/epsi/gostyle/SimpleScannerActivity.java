@@ -60,9 +60,10 @@ public class SimpleScannerActivity extends BaseScannerActivity implements ZXingS
         String[] idPromoInQRCode = url.split("/");
 
         final Intent myIntent = new Intent(this, MainActivity.class);
+        myIntent.putExtra("idClient", getIntent().getStringExtra("idClient"));
         startActivity(myIntent);
 
-        String updatePromotionOfUser = "http://172.20.10.3:3000/promos/" + idPromoInQRCode[idPromoInQRCode.length-1] + "/1";
+        String updatePromotionOfUser = "http://172.20.10.3:3000/promos/" + idPromoInQRCode[idPromoInQRCode.length-1] + "/" + getIntent().getStringExtra("idClient");
         RequestQueue queue = Volley.newRequestQueue(this);
 
         StringRequest stringRequest = updatePromotionOfUser(updatePromotionOfUser);
@@ -75,6 +76,7 @@ public class SimpleScannerActivity extends BaseScannerActivity implements ZXingS
                     @Override
                     public void onResponse(String response) {
                         try {
+                            System.out.println(response);
                             Toast.makeText(SimpleScannerActivity.this, "Promotion associée à l'utilisateur.", Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             e.printStackTrace();
