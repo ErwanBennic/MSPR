@@ -48,16 +48,17 @@ CREATE TABLE `promo` (
   `libelle` varchar(100) NOT NULL,
   `pourcentage` float NOT NULL,
   `marque` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
-  `dateperemption` date NOT NULL
+  `dateperemption` date NOT NULL,
+  `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `promo`
 --
 
-INSERT INTO `promo` (`id`, `code`, `libelle`, `pourcentage`, `marque`, `dateperemption`) VALUES
-(1, 'PRINTEMPS20', 'Le printemps, c\'est maintenant !', 15, 'Nike', '2020-03-31'),
-(2, 'GRENOUILLE20', 'Certains matins de printemps ont une fraîcheur de grenouille.', 25, 'Roxy', '2020-04-30');
+INSERT INTO `promo` (`id`, `code`, `libelle`, `pourcentage`, `marque`, `dateperemption`, `image`) VALUES
+(1, 'PRINTEMPS20', 'Le printemps, c\'est maintenant !', 15, 'Nike', '2020-03-31', 'https://i.ytimg.com/vi/Q0y4D1_xn4c/maxresdefault.jpg'),
+(2, 'GRENOUILLE20', 'Certains matins de printemps ont une fraîcheur de grenouille.', 25, 'Roxy', '2020-04-30', 'https://cdn.1min30.com/wp-content/uploads/2017/05/logo-Roxy.jpg');
 
 -- --------------------------------------------------------
 
