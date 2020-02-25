@@ -27,23 +27,23 @@ public class ListArrayAdapter extends ArrayAdapter {
 
         Promotion promotion = (Promotion) getItem(position);
 
-        View matchListItem;
+        View promoListItem;
         if (convertView == null){
             LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            matchListItem = layoutInflater.inflate(this.listItemRessources, parent, false);
+            promoListItem = layoutInflater.inflate(this.listItemRessources, parent, false);
         } else {
-            matchListItem = convertView;
+            promoListItem = convertView;
         }
 
-        TextView textViewTitle = matchListItem.findViewById(R.id.textViewTitle);
-        TextView textViewDate = matchListItem.findViewById(R.id.textViewDate);
-        ImageView imageView = matchListItem.findViewById(R.id.imagePromo);
+        TextView textViewTitle = promoListItem.findViewById(R.id.textViewTitle);
+        TextView textViewDate = promoListItem.findViewById(R.id.textViewDate);
+        ImageView imageView = promoListItem.findViewById(R.id.imagePromo);
 
         textViewTitle.setText(promotion.getLibelle());
-        textViewDate.setText(promotion.getMarque());
+        textViewDate.setText(promotion.getMarque() + " - " + promotion.getCode() + " - " + promotion.getPourcentage() + "%");
 
         Picasso.get().load(promotion.getImage()).into(imageView);
 
-        return matchListItem;
+        return promoListItem;
     }
 }
