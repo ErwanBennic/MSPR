@@ -2,6 +2,7 @@ const PromoDto = require('./promoDto')
 class ClientDto {
 
    constructor(clientDao) {
+      this.id = clientDao.id;
       this.nom = clientDao.nom;
       this.prenom = clientDao.prenom;
       this.email = clientDao.email;
