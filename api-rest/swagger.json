@@ -13,8 +13,8 @@
    "basePath": "/api/docs",
    "tags": [
      {
-       "name": "ClAPI GoStyle - gestion des clients et des promotions.",
-       "description": "API permettant de récupérer un client et des promotions"
+       "name": "API GoStyle - gestion des clients et des promotions.",
+       "description": "API permettant de récupérer des promotions pour un client"
      }
    ],
    "schemes": [
@@ -46,7 +46,10 @@
            "200": {
              "description": "OK"
            },
-           "204": {
+           "400": {
+             "description": "Bad request"
+           },
+           "404": {
              "description": "No client found"
            }
          }
@@ -75,7 +78,10 @@
           ],
          "responses": {
            "200": {
-             "description": "Client is found"
+             "description": "OK"
+           },
+           "400": {
+             "description": "Invalid Syntax"
            },
            "403": {
              "description": "Invalid login or password"
@@ -102,49 +108,60 @@
              "200": {
                "description": "OK"
              },
-             "204": {
-               "description": "Promo not valid anymore"
-             }
+             "400": {
+               "description": "Bad request"
              },
              "404": {
-               "description": "No promo found"
+               "description": "Promo not found"
              }
            }
-         },
-         "/promos/{promoId}/{userId}": {
-            "parameters": [
-              {
-                "name": "promoId",
-                "in": "path",
-                "required": true,
-                "description": "L'id de la promotion que l'on souhaite trouver",
-                "type": "string"
-              },
-              {
-                "name": "userId",
-                "in": "path",
-                "required": true,
-                "description": "L'id du client que l'on souhaite associer à la promotion trouvée",
-                "type": "string"
-              }
-            ],
-            "post": {
-              "tags": [
-                "promotions clients"
-              ],
-              "description": "Renvoie une promotion grâce à l'id de la promotion et l'associe en base de données avec le client.",
-              "responses": {
-                "201": {
-                  "description": "Created"
-                },
-                "204": {
-                  "description": "Promo not valid anymore"
-                }
-                },
-                "404": {
-                  "description": "No promo found"
-                }
-              }
+         }
+      },
+      "/promos/{promoId}/{userId}": {
+         "parameters": [
+            {
+               "name": "promoId",
+               "in": "path",
+               "required": true,
+               "description": "L'id de la promotion que l'on souhaite trouver",
+               "type": "string"
+            },
+            {
+               "name": "userId",
+               "in": "path",
+               "required": true,
+               "description": "L'id du client que l'on souhaite associer à la promotion trouvée",
+               "type": "string"
             }
+         ],
+         "post": {
+            "tags": [
+               "promotions clients"
+            ],
+            "description": "Renvoie une promotion grâce à l'id de la promotion et l'associe en base de données avec le client.",
+            "responses": {
+               "201": {
+               "description": "Created"
+               },
+               "404": {
+               "description": "Promo not found"
+               }
+            }
+         },
+         "delete": {
+            "tags": [
+               "promotions clients"
+            ],
+            "description": "Supprime l'association entre un client et une promotion.",
+            "responses": {
+               "204": {
+               "description": "No content"
+               },
+               "404": {
+               "description": "Promo not found"
+               }
+            }
+         }
+      }
    }
- }
+}

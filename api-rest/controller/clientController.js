@@ -6,7 +6,7 @@ const ClientDao = require('../repo/clientDao');
 const clientDao = new ClientDao();
 
 router.get('/:id', async function (req, res, next) {
-   if(isNaN(parseInt(req.params.id))) return res.status(400).send({"error":"bad request"})
+   if(isNaN(parseInt(req.params.id))) return res.status(400).send({"error":"Bad request"})
 
    const clientFromDao = await clientDao.getClientById(req.params.id);
    if(clientFromDao) {
