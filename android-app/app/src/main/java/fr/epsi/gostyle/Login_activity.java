@@ -46,7 +46,7 @@ public class Login_activity extends Activity {
     }
 
     private StringRequest checkCredentials(final Editable email, final Editable password) {
-        String loginUrl = "http://172.20.10.3:3000/login";
+        String loginUrl = "http://172.20.10.6:3000/login";
 
         StringRequest request = new StringRequest(Request.Method.POST, loginUrl,
                 new Response.Listener<String>() {
@@ -64,7 +64,7 @@ public class Login_activity extends Activity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.e("Error: " + error.toString());
-                System.out.println(error.networkResponse.statusCode);
+                /*System.out.println(error.networkResponse.statusCode);*/
                 Toast.makeText(Login_activity.this, "Connexion échouée.", Toast.LENGTH_LONG).show();
             }
         }) {

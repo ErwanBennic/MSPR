@@ -21,4 +21,12 @@ module.exports = class ClientDao {
          logger.red('clientDao.savePromoForClient', error);
       }
    }
+
+   async deletePromoForClient(promoId, userId) {
+      try {
+         await Promoclient.destroy({where : {id_promo : promoId, id_client : userId}})
+      } catch (error) {
+         logger.red('clientDao.deletePromoForClient', error);
+      }
+   }
 }
