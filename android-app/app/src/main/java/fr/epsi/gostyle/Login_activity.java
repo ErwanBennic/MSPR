@@ -65,7 +65,7 @@ public class Login_activity extends Activity {
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.e("Error: " + error.toString());
                 System.out.println(error.networkResponse.statusCode);
-                Toast.makeText(Login_activity.this, "Connexion échoué.", Toast.LENGTH_LONG).show();
+                Toast.makeText(Login_activity.this, "Connexion échouée.", Toast.LENGTH_LONG).show();
             }
         }) {
             @Override

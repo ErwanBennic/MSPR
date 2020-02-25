@@ -27,14 +27,22 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="500dp"
         android:orientation="vertical"
+        android:minHeight="500dp"
         android:paddingTop="0dp">
 
         <ListView
             android:id="@+id/listOfPromotions"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
         <include layout="@layout/footer" />
     </LinearLayout>
