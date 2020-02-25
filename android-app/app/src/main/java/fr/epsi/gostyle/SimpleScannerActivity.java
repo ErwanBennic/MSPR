@@ -84,6 +84,7 @@ public class SimpleScannerActivity extends BaseScannerActivity implements ZXingS
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.e("Error: " + error.toString());
+                Toast.makeText(SimpleScannerActivity.this, "Promotion invalide.", Toast.LENGTH_SHORT).show();
             }
         });
     }
