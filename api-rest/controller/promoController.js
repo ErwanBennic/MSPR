@@ -10,7 +10,7 @@ const clientDao = new ClientDao();
 var router = express.Router();
 
 router.get('/:promoId/', async (req, res, next) => {
-   if (isNaN(parseInt(req.params.promoId))) return res.status(400).send({ "error": "bad request" })
+   if (isNaN(parseInt(req.params.promoId))) return res.status(400).send({ "error": "Bad request" })
 
 
    const promoFromDao = await promoDao.getPromoById(req.params.promoId);
@@ -34,7 +34,7 @@ router.post('/:promoId/:userId', async (req, res, next) => {
          res.status(404).send({"error":"Promo not found"});
       }
    } else {
-      res.status(404).send({ "error": "No promo found" });
+      res.status(404).send({ "error": "Promo not found" });
    }
 });
 
