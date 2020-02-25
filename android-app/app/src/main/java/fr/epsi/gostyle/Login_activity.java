@@ -17,6 +17,8 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,6 +57,8 @@ public class Login_activity extends Activity {
                         try {
                             System.out.println("Connexion réussie");
                             Intent intent = new Intent(Login_activity.this, MainActivity.class);
+                            JSONObject client = new JSONObject(response);
+                            intent.putExtra("idClient", client.get("id").toString());
                             startActivity(intent);
                         } catch (Exception e) {
                             e.printStackTrace();
