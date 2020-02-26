@@ -10,7 +10,7 @@
      }
    },
    "host": "localhost:3000",
-   "basePath": "/api/docs",
+   "basePath": "/",
    "tags": [
      {
        "name": "API GoStyle - gestion des clients et des promotions.",
