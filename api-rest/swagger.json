@@ -83,7 +83,7 @@
            "400": {
              "description": "Invalid Syntax"
            },
-           "403": {
+           "401": {
              "description": "Invalid login or password"
            }
          }

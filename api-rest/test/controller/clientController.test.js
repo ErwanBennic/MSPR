@@ -16,7 +16,8 @@ describe('checks routes for client', () => {
          res.should.be.json;
          should.exist(res.body);
          res.body.should.have.property('nom');
-         res.body.should.not.have.property('id');
+         res.body.should.have.property('promos');
+         res.body.should.not.have.property('password');
          done();
       });
    });

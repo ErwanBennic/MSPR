@@ -22,11 +22,11 @@ router.post('/', async function (req, res, next) {
          const clientDto = new ClientDto(clientFromDao);
          res.status(200).json(clientDto);
       } else {
-         res.status(403).send({ "error": "Invalid login or password" });
+         res.status(401).send({ "error": "Invalid login or password" });
       }
       
    } else {
-      res.status(403).send({ "error": "Invalid login or password" });
+      res.status(401).send({ "error": "Invalid login or password" });
    }
 });
 
