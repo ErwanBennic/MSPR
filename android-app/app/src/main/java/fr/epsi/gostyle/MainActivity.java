@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
 
     private static final int ZXING_CAMERA_PERMISSION = 1;
     private Class<?> mClss;
-    // ToDo: remplacer id client
     private String urlPromos = "http://172.20.10.3:3000/clients/";
 
     public static void display(MainActivity activity) {
