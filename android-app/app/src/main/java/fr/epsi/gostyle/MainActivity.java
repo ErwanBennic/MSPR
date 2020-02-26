@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
     }
 
     private StringRequest getPromotionsOfUser() {
+        // Requête Volley Get
         return new StringRequest(Request.Method.GET, this.urlPromos + getIntent().getExtras().getString("idClient"),
                     new Response.Listener<String>() {
                         @Override
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
                                     Object currentObjectPromotion = client.getJSONArray("promos").get(i);
                                     JSONObject currentPromotion = new JSONObject(currentObjectPromotion.toString());
 
+                                    // On crée l'objet Promotion
                                     Promotion promotion = new Promotion();
                                     promotion.setImage((String) currentPromotion.get("image"));
                                     promotion.setCode((String) currentPromotion.get("code"));
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements ZXingScannerView.
                                     promotion.setDatepremption((String) currentPromotion.get("dateperemption"));
                                     promotion.setMarque((String) currentPromotion.get("marque"));
 
+                                    // On ajoute la promotion à la liste
                                     userPromotions.add(promotion);
                                 }
 
